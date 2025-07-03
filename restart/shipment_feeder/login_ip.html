@@ -1,0 +1,107 @@
+<HTML>
+<head>
+<title>DHL Shipment Information Feeder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+
+<style>
+<!--
+ 
+a:link {  color: #000000; text-decoration:none}
+a:visited {  color: #000000; text-decoration:none}
+
+-->
+</style>
+</head>
+<script src="js_client/rollovers.js" type="text/javascript"></script>
+<SCRIPT LANGUAGE="javascript" SRC="js_client/formCheck.js"></SCRIPT>
+<script src="js/login_ip.js" type="text/javascript"></script>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<blockquote>
+
+<center>
+<font face="Frutiger, Arial">
+
+
+<form id="formLogin" name="formlogin" method="post" action="login_validate.jsp" autocomplete="off">
+
+<table border="0">
+<tr>
+<td colspan="2">
+Please enter your authentication code<br>&nbsp;
+</td>
+</tr>
+<tr><td>
+
+<table border=0 cellspacing=0>
+<tr bgcolor="#CC0000"><td width=300><font color="#FFFFFF" size="3" face="Arial"><b>Sign In Here</b></font></td></tr>
+<tr bgcolor="#E4E4E4"><td height=100 valign="top"><br>
+
+<table border=0>
+<tr>
+<td>Authentication code: </td>
+<td><input type="text" name="emailadr" size="4" maxlength="4" autocomplete="off"></td>
+</tr>
+<!--
+<tr>
+<td>Password: </td>
+<td><input type="password" name="passwd" size="16" maxlength="16"></td>
+</tr>
+-->
+<tr>
+<td></td>
+<td>
+	<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" value="">
+	<input type="submit" name="Submit" value="Sign In"></td>
+</tr>
+<!--
+<tr><td></td><td>
+<input type="button" name="forgotpassword" value="Forgot Password" onClick="javascript:nextpage('forgot_password/fp_DefPage.jsp',true);">
+</td></tr>
+-->
+
+</table>
+
+</td></tr>
+
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+&nbsp;<br>
+<font size="2">The system is designed for Internet Explorer 5.0 or above.</font>
+</td>
+</tr>
+
+</table>
+
+<br><br>
+
+<input type="hidden" name="passwd" value=""></td>
+<input type="hidden" name="from_where" value="print_waybill">
+
+<script>
+// 將 localStorage 的 reCAPTCHA token 帶入隱藏欄位
+document.addEventListener('DOMContentLoaded', function() {
+	var token = localStorage.getItem('g-recaptcha-response');
+	if (token) {
+		document.getElementById('g-recaptcha-response').value = token;
+		// 清除 token，避免重複送出
+		localStorage.removeItem('g-recaptcha-response');
+	}
+});
+</script>
+</form>
+
+</font>
+</center>
+</blockquote>
+</body>
+
+
+</HTML>
