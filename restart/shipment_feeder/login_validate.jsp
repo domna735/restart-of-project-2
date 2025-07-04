@@ -4,7 +4,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.lang.*"%>
 <%@ page import="java.net.*"%>
-<%@ page import="java.io.*" %>
 
 <html>
 <head>
@@ -16,37 +15,24 @@
 
 <body bgcolor=#ffffff><blockquote>
 <script type="text/javascript" src="js/back.js"></script>
-
 <form>
-
 
 <%
 String referpage = request.getHeader("referer");
+
 Common common = new Common();
-// reCAPTCHA 驗證
-if ((request.getParameter("g-recaptcha-response") == null) || (request.getParameter("g-recaptcha-response").equals(""))) {
-	response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
-	if(true){return;}
-} else {
-	try {
-		Curl curl = new Curl();
-		boolean chk_result = false;
-		Properties prop=new Properties();
-		FileInputStream ip=new FileInputStream(System.getProperty("catalina.base")+"/webapps/config.properties");
-		prop.load(ip);
-		String captcha_secretKey = prop.getProperty("captcha_secretKey_v3");
-		chk_result = curl.chk_captcha(captcha_secretKey, request.getParameter("g-recaptcha-response"));
-		if (!chk_result) {
-			response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
-			if(true){return;}
-		}
-	} catch(Exception e) {
-		response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
-		if(true){return;}
-	}
+//out.println(referpage);
+
+
+if (referpage == null) {
+   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
+   if(true){return;}
 }
 
-// ...existing code...
+if (request.getQueryString() != null) {
+   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
+   if(true){return;}
+}
 
 URL referurl = new URL(referpage);
 //if (!(referpage.substring(referpage.length()-26,referpage.length()).equals("shipment_feeder/login.html"))) {
@@ -98,23 +84,23 @@ if (sf.overAttempt(10, request.getParameter("emailadr"))) {
 } else {
 
   Customer cust = sf.getCust(request.getParameter("emailadr"), request.getParameter("passwd"));
-	JdbcConn myJdbc = new JdbcConn("webdb_ds");
-	String sql_str="";
+    JdbcConn myJdbc = new JdbcConn("webdb_ds");
+    String sql_str="";
 
   if (cust.grp_id == null) {
-	sql_str = "insert into sf_customer_login values ('" + request.getParameter("emailadr") + "','" + request.getParameter("passwd") + "',current)";
-	myJdbc.exeUpdateTrans(sql_str);
+    sql_str = "insert into sf_customer_login values ('" + request.getParameter("emailadr") + "','" + request.getParameter("passwd") + "',current)";
+    myJdbc.exeUpdateTrans(sql_str);
 
-	if (!request.getParameter("passwd").equals("")) {
-	out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid login email or password!</b></font>");
-	} else {
-		out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid authentication code!</b></font>");
-	}
-	out.println("<br><br><input type=\"button\" name=\"back\" value=\"Back\" id=\"backButton\">");
-	
+    if (!request.getParameter("passwd").equals("")) {
+  	out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid login email or password!</b></font>");
+    } else {
+        out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid authentication code!</b></font>");
+    }
+    out.println("<br><br><input type=\"button\" name=\"back\" value=\"Back\" id=\"backButton\">");
+    
   } else {
-	sql_str = "delete from sf_customer_login where email = '" + request.getParameter("emailadr") + "'";
-	myJdbc.exeUpdateTrans(sql_str);
+    sql_str = "delete from sf_customer_login where email = '" + request.getParameter("emailadr") + "'";
+    myJdbc.exeUpdateTrans(sql_str);
 
 	  session.setAttribute("emailadr", request.getParameter("emailadr"));
 	  session.setAttribute("grp_id", cust.grp_id);
@@ -131,15 +117,15 @@ if (sf.overAttempt(10, request.getParameter("emailadr"))) {
 
 	  
 	  if (df_menu.equals("ip")) {
-		//response.sendRedirect("input_print/toMain.jsp");
+	    //response.sendRedirect("input_print/toMain.jsp");
 		response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "input_print/toMain.jsp"));
-		return;
-	  } else {
+	    return;
+      } else {
 		if (df_menu.equals("f2")) {
-		  //response.sendRedirect("feed_print2/toMain.jsp");
+	      //response.sendRedirect("feed_print2/toMain.jsp");
 		  response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "feed_print2/toMain.jsp"));
 		  return;
-		} 
+	    } 
 	  }
 	  
   }

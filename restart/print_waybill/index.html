@@ -1,25 +1,12 @@
 <%@ page import="com.hkapps.util.*"%>
 
-
 <html><head>
 <title>DHL Waybill Printing</title>
 
-<script src="https://www.recaptcha.net/recaptcha/api.js?render=6LcB8dcZAAAAAJO9mElsjCkPrWVj1rXr2SH9ML_h"></script>
-<script>
+<SCRIPT LANGUAGE="javascript">
 self.focus();
 //self.resizeTo(800,700);
 //self.moveTo(0,0);
-
-function gotoLogin() {
-	grecaptcha.ready(function() {
-		grecaptcha.execute('6LcB8dcZAAAAAJO9mElsjCkPrWVj1rXr2SH9ML_h', {action: 'login'}).then(function(token) {
-			// 將 token 存到 localStorage 以便 login_ip.html 取用
-			localStorage.setItem('g-recaptcha-response', token);
-			// 跳轉到登入頁
-			window.location.href = '../shipment_feeder/login_ip.html';
-		});
-	});
-}
 </script>
 </head>
 

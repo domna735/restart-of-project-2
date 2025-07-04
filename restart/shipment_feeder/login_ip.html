@@ -24,8 +24,7 @@ a:visited {  color: #000000; text-decoration:none}
 <center>
 <font face="Frutiger, Arial">
 
-
-<form id="formLogin" name="formlogin" method="post" action="login_validate.jsp" autocomplete="off">
+<form id="formLogin" name="formlogin" method="post" action="login_validate.jsp">
 
 <table border="0">
 <tr>
@@ -53,7 +52,6 @@ Please enter your authentication code<br>&nbsp;
 <tr>
 <td></td>
 <td>
-	<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" value="">
 	<input type="submit" name="Submit" value="Sign In"></td>
 </tr>
 <!--
@@ -85,17 +83,6 @@ Please enter your authentication code<br>&nbsp;
 <input type="hidden" name="passwd" value=""></td>
 <input type="hidden" name="from_where" value="print_waybill">
 
-<script>
-// 將 localStorage 的 reCAPTCHA token 帶入隱藏欄位
-document.addEventListener('DOMContentLoaded', function() {
-	var token = localStorage.getItem('g-recaptcha-response');
-	if (token) {
-		document.getElementById('g-recaptcha-response').value = token;
-		// 清除 token，避免重複送出
-		localStorage.removeItem('g-recaptcha-response');
-	}
-});
-</script>
 </form>
 
 </font>
