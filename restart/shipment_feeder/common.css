@@ -1,0 +1,115 @@
+
+body {
+font-family: "Arial,·s²Ó©úÅé"; 
+font-size: 10pt;
+color: #000000;
+background-color: #ffffff
+}
+
+
+BODY {
+	FONT-SIZE: 11px; LINE-HEIGHT: 1.25
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BODY {
+	COLOR: #000; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.contentBlock {
+	MARGIN-LEFT: 10px; WIDTH: 169px; HEIGHT: 84px
+}
+HTML .contentBlock {
+	MARGIN-LEFT: 14px
+}
+
+.buttonContent {
+	BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #fff 1px solid; DISPLAY: block; PADDING-LEFT: 1px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: #fc0 no-repeat right 50%; PADDING-BOTTOM: 1px; MARGIN: 0px 1px 1px 0px; BORDER-LEFT: #fff 1px solid; WIDTH: 164px; LINE-HEIGHT: 12px; PADDING-TOP: 1px; BORDER-BOTTOM: black 1px solid; POSITION: relative; HEIGHT: 39px
+}
+HTML .buttonContent {
+	WIDTH: 168px; HEIGHT: 43px
+}
+.buttonContent:hover {
+	BORDER-LEFT-COLOR: black; BORDER-BOTTOM-COLOR: #fff; MARGIN: 1px 0px 0px 1px; CURSOR: hand; BORDER-TOP-COLOR: black; BORDER-RIGHT-COLOR: #fff
+}
+.buttonContent SPAN {
+	DISPLAY: block; FONT-WEIGHT: bold; MARGIN: 1px 1px 1px 3px; WIDTH: 80px; BOTTOM: auto; POSITION: absolute; TOP: 0px
+}
+.buttonArrow {
+	LEFT: -16px; POSITION: absolute; TOP: 0.15em
+}
+.textContent .product {
+	TEXT-TRANSFORM: uppercase; FONT-STYLE: italic
+}
+.textContent {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 1px; FONT-SIZE: 1em; PADDING-BOTTOM: 1px; OVERFLOW: hidden; LINE-HEIGHT: 1.1; PADDING-TOP: 0px; HEIGHT: 39px
+}
+
+
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+
+
+TABLE {
+	FONT-SIZE: 12px; BORDER-COLLAPSE: collapse; border-spacing: 0
+}
+
+.whiteTdNormal
+	{
+		FONT-size : 11px ;
+		FONT-FAMILY : Arial;
+		FONT-WEIGHT: Normal;
+		Text-align : left;
+		COLOR : #000000;
+		background-color : #FFFFFF;
+		vertical-align : center;
+		
+	}
+
+.blackHeading
+	{
+		FONT-size : 12px ;
+		FONT-FAMILY : Arial;
+		FONT-WEIGHT: bold;
+		Text-align : center;
+		COLOR : #FFFFFF;
+		vertical-align : center;
+		background-color: #000000;
+	}
+	
+.grayTdNormal
+	{
+		FONT-size : 11px ;
+		FONT-FAMILY : Arial;
+		FONT-WEIGHT: Normal;
+		Text-align : left;
+		COLOR : #000000;
+		background-color : #e4e4e4;
+		vertical-align : center;
+		
+	}	
+	
+.grayTdNormalBreak
+	{
+		FONT-size : 11px ;
+		FONT-FAMILY : Arial;
+		FONT-WEIGHT: Normal;
+		Text-align : left;
+		COLOR : #000000;
+		background-color : #e4e4e4;
+		vertical-align : center;
+		WORD-BREAK:BREAK-ALL
+	}
+
+.whiteTdNormalBreak
+	{
+		FONT-size : 11px ;
+		FONT-FAMILY : Arial;
+		FONT-WEIGHT: Normal;
+		Text-align : left;
+		COLOR : #000000;
+		background-color : #FFFFFF;
+		vertical-align : center;
+		WORD-BREAK:BREAK-ALL
+	}					
