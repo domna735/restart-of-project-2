@@ -1,25 +1,25 @@
 <%@ page import="com.hkapps.util.*"%>
 
+<<<<<<< HEAD
+<html><head>
+<title>DHL Waybill Printing</title>
+
+=======
+<%
+response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;");
+%>
 
 <html><head>
 <title>DHL Waybill Printing</title>
 
+<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;">-->
+
 <script src="https://www.recaptcha.net/recaptcha/api.js?render=6LcB8dcZAAAAAJO9mElsjCkPrWVj1rXr2SH9ML_h"></script>
-<script>
+>>>>>>> b6ed32d (本地更動說明)
+<SCRIPT LANGUAGE="javascript">
 self.focus();
 //self.resizeTo(800,700);
 //self.moveTo(0,0);
-
-function gotoLogin() {
-	grecaptcha.ready(function() {
-		grecaptcha.execute('6LcB8dcZAAAAAJO9mElsjCkPrWVj1rXr2SH9ML_h', {action: 'login'}).then(function(token) {
-			// 將 token 存到 localStorage 以便 login_ip.html 取用
-			localStorage.setItem('g-recaptcha-response', token);
-			// 跳轉到登入頁
-			window.location.href = '../shipment_feeder/login_ip.html';
-		});
-	});
-}
 </script>
 </head>
 
@@ -50,7 +50,11 @@ if (common.isProd(request.getServerPort())) {
 
 <frameset rows=140,* frameborder=0 framespacing=0 border=0>
 	<frame src=Top.html scrolling=off marginheight=0 marginwidth=0 name="head">
+<<<<<<< HEAD
 	<frame src=../shipment_feeder/login_ip.html scrolling=auto name="main">
+=======
+	<frame src=../shipment_feeder/login_ip.jsp scrolling=auto name="main">
+>>>>>>> b6ed32d (本地更動說明)
 </frameset>
 
 

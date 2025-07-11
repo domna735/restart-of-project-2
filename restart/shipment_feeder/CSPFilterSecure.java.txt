@@ -1,0 +1,37 @@
+package com.hkapps.util;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.FilterChain;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+public class CSPFilterSecure implements Filter {
+
+    // 放寬 CSP，允許 reCAPTCHA、inline script/style、frame，for testing
+    public static final String POLICY = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;";
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        if (response instanceof HttpServletResponse) {
+            ((HttpServletResponse) response).setHeader("Content-Security-Policy", CSPFilterSecure.POLICY);
+        }
+        chain.doFilter(request, response);
+
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Initialization code, if needed
+    }
+
+    @Override
+    public void destroy() {
+        // Cleanup code, if needed
+    }
+}

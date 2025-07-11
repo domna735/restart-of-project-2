@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> b6ed32d (本地更動說明)
 <%@ page import="hkapps.shipment_feeder.*"%>
 <%@ page import="com.hkapps.util.*"%>
 <%@ page import="java.net.URLEncoder"%>
@@ -5,6 +9,24 @@
 <%@ page import="java.lang.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import="java.io.*" %>
+<<<<<<< HEAD
+<%
+// 臨時測試用，覆蓋 server 的 CSP 設定，讓 reCAPTCHA 可以正常運作
+response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content;");
+=======
+<%@ page import="hkapps.event_extract.*"%>
+<%@ page import="java.lang.reflect.Array"%>
+<%@ page import="org.json.*"%>
+
+<%
+System.out.println("Debug: 這裡是login_validate.jsp");
+%>
+
+<%
+// 臨時測試用，放寬 CSP 設定，允許本地 frame 及 inline script
+response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;");
+>>>>>>> b6ed32d (本地更動說明)
+%>
 
 <html>
 <head>
@@ -16,9 +38,7 @@
 
 <body bgcolor=#ffffff><blockquote>
 <script type="text/javascript" src="js/back.js"></script>
-
 <form>
-
 
 <%
 String referpage = request.getHeader("referer");
@@ -46,17 +66,35 @@ if ((request.getParameter("g-recaptcha-response") == null) || (request.getParame
 	}
 }
 
+<<<<<<< HEAD
 // ...existing code...
 
 URL referurl = new URL(referpage);
 //if (!(referpage.substring(referpage.length()-26,referpage.length()).equals("shipment_feeder/login.html"))) {
 if (!referurl.getPath().equals("/shipment_feeder/login.html") && !referurl.getPath().equals("/shipment_feeder/login_ip.html")) {
+=======
+if (referpage == null) {
+   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
+   if(true){return;}
+}
+
+if (request.getQueryString() != null) {
+   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
+   if(true){return;}
+}
+
+URL referurl = new URL(referpage);
+if (!referurl.getPath().equals("/shipment_feeder/login.html") && !referurl.getPath().equals("/shipment_feeder/login_ip.jsp")) {
+>>>>>>> b6ed32d (本地更動說明)
    response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
    if(true){return;}
 }
 
 if (referurl.getPath().equals("/shipment_feeder/login.html")) {
+<<<<<<< HEAD
 	
+=======
+>>>>>>> b6ed32d (本地更動說明)
 	if ((request.getParameter("emailadr") == null) || (request.getParameter("emailadr").equals("")) || 
 		(request.getParameter("passwd") == null) || (request.getParameter("passwd").equals(""))) {
 	   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
@@ -69,11 +107,17 @@ if (referurl.getPath().equals("/shipment_feeder/login.html")) {
 	   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
 	   if(true){return;}
 	}
+<<<<<<< HEAD
 
 }
 
 if (referurl.getPath().equals("/shipment_feeder/login_ip.html")) {
 	
+=======
+}
+
+if (referurl.getPath().equals("/shipment_feeder/login_ip.jsp")) {
+>>>>>>> b6ed32d (本地更動說明)
 	if ((request.getParameter("emailadr") == null) || (request.getParameter("emailadr").equals("")) || 
 		(request.getParameter("passwd") == null) || (!request.getParameter("passwd").equals(""))) {
 	   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
@@ -86,6 +130,7 @@ if (referurl.getPath().equals("/shipment_feeder/login_ip.html")) {
 	   response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "index.html"));
 	   if(true){return;}
 	}
+<<<<<<< HEAD
 
 }
 
@@ -145,6 +190,51 @@ if (sf.overAttempt(10, request.getParameter("emailadr"))) {
   }
 }
    
+=======
+}
+
+Shipment_feeder sf = new Shipment_feeder();
+if (sf.overAttempt(10, request.getParameter("emailadr"))) {
+   out.println("<font size=2 face=\"Frutiger, Arial\"><b>Please contact your sales representative.</b></font>");
+} else {
+  Customer cust = sf.getCust(request.getParameter("emailadr"), request.getParameter("passwd"));
+  JdbcConn myJdbc = new JdbcConn("webdb_ds");
+  String sql_str="";
+  if (cust.grp_id == null) {
+	sql_str = "insert into sf_customer_login values ('" + request.getParameter("emailadr") + "','" + request.getParameter("passwd") + "',current)";
+	myJdbc.exeUpdateTrans(sql_str);
+	if (!request.getParameter("passwd").equals("")) {
+	  out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid login email or password!</b></font>");
+	} else {
+	  out.println("<font size=2 face=\"Frutiger, Arial\"><b>Invalid authentication code!</b></font>");
+	}
+	out.println("<br><br><input type=\"button\" name=\"back\" value=\"Back\" id=\"backButton\">");
+  } else {
+	sql_str = "delete from sf_customer_login where email = '" + request.getParameter("emailadr") + "'";
+	myJdbc.exeUpdateTrans(sql_str);
+	session.setAttribute("emailadr", request.getParameter("emailadr"));
+	session.setAttribute("grp_id", cust.grp_id);
+	session.setAttribute("contact_name", cust.contact_name);
+	session.setAttribute("logo_filename", cust.logo_filename);
+	session.setAttribute("default_charset", cust.default_charset);
+	session.setAttribute("opt_charset", cust.opt_charset);
+	session.setAttribute("default_sub_grp_id", cust.default_sub_grp_id);
+	session.setAttribute("opt_sub_grp", cust.opt_sub_grp);
+	String df_menu = sf.getDefaultMenu(cust.grp_id);
+	if (df_menu.equals("ip")) {
+	  response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "input_print/toMain.jsp"));
+	  return;
+	} else if (df_menu.equals("f2")) {
+	  response.sendRedirect(common.convert_path(request.getServerPort(), (request.getRequestURL()).toString(), request.getServletPath(), "feed_print2/toMain.jsp"));
+	  return;
+	} else {
+	  // fallback: 跳新版首頁
+	  out.println("<script>top.location.href='https://mykullstc000536.apis.dhl.com/shipment_feeder/input_print/ip_DefPage.jsp';</script>");
+	  return;
+	}
+  }
+}
+>>>>>>> b6ed32d (本地更動說明)
 %>
 </form>
 </blockquote></body></html>
