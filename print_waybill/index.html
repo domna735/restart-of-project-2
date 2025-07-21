@@ -1,0 +1,51 @@
+<%@ page import="com.hkapps.util.*"%>
+
+<%
+response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;");
+%>
+
+<html><head>
+<title>DHL Waybill Printing</title>
+
+<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://www.recaptcha.net https://www.gstatic.com; frame-src 'self' https://www.recaptcha.net https://www.gstatic.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;">-->
+
+<script src="https://www.recaptcha.net/recaptcha/api.js?render=6LcB8dcZAAAAAJO9mElsjCkPrWVj1rXr2SH9ML_h"></script>
+<SCRIPT LANGUAGE="javascript">
+self.focus();
+//self.resizeTo(800,700);
+//self.moveTo(0,0);
+</script>
+</head>
+
+
+<%
+/*
+Common common = new Common();
+if (common.isProd(request.getServerPort())) {
+ if (request.getParameter("rload") == null) {
+*/
+%>
+<!--
+<body>
+<form name="pre" method="post" action="https://apps.dhl.com.hk/print_waybill/">
+<input type="hidden" name="rload" value="Y">
+</form>
+</body>
+-->
+<script LANGUAGE="javascript">
+//document.pre.submit();
+</script>
+<%
+/*
+ }
+}
+*/
+%>
+
+<frameset rows=140,* frameborder=0 framespacing=0 border=0>
+	<frame src=Top.html scrolling=off marginheight=0 marginwidth=0 name="head">
+	<frame src=../shipment_feeder/login_ip.jsp scrolling=auto name="main">
+</frameset>
+
+
+</html>
